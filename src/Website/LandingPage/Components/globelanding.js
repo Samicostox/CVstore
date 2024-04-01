@@ -410,8 +410,8 @@ export function GlobeDemo() {
       </p>
     </motion.div>
     <News></News>
-    <div className="absolute w-full bottom-0 inset-x-0 h-40 md:h-40 bg-gradient-to-b pointer-events-none select-none from-transparent to-slate-900  z-40" />
-    <div className="absolute w-full bottom-0 md:-bottom-60 h-[50vh] md:h-full z-10">
+    <div className="absolute w-full bottom-0 inset-x-0 h-40 md:h-40 bg-gradient-to-b pointer-events-none select-none from-transparent to-slate-900  z-40 mt-6" />
+    <div className="absolute w-full bottom-0 md:-bottom-60 h-[50vh] md:h-full z-10 pointer-events-none md:pointer-events-auto">
       <Suspense fallback={<div>Loading...</div>}>
         <World data={sampleArcs} globeConfig={globeConfig} />
       </Suspense>
