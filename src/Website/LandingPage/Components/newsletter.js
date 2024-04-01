@@ -49,7 +49,7 @@ import {
           e.preventDefault();
         }}
         onClick={() => {
-          inputRef.current.focus();
+          inputRef.current?.focus();
         }}
         className="relative flex w-full max-w-md items-center gap-2 rounded-full border border-white/20 bg-gradient-to-br from-white/20 to-white/5 py-1.5 pl-6 pr-1.5"
       >
@@ -57,13 +57,13 @@ import {
           ref={inputRef}
           type="email"
           placeholder="Enter your email"
-          className="w-full bg-transparent text-sm text-white placeholder-white/80 focus:outline-0"
+          className="w-full bg-transparent text-base text-white placeholder-white/80 focus:outline-none"
         />
   
         <button
           onClick={(e) => e.stopPropagation()}
           type="submit"
-          className="group flex shrink-0 items-center gap-1.5 rounded-full bg-gradient-to-br from-gray-50 to-gray-400 px-4 py-3 text-sm font-medium text-gray-900 transition-transform active:scale-[0.985]"
+          className="group flex shrink-0 items-center gap-1.5 rounded-full bg-gradient-to-br from-gray-50 to-gray-400 px-4 py-3 text-base font-medium text-gray-900 transition-transform active:scale-[0.985]"
         >
           <span>Join NewsLetter</span>
           <FiArrowRight className="-mr-4 opacity-0 transition-all group-hover:-mr-0 group-hover:opacity-100 group-active:-rotate-45" />
