@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from "framer-motion";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const ResponsiveCards = () => {
+    useEffect(() => {
+        AOS.init({
+          // settings here
+          duration: 1000, // Global animation duration
+        });
+      }, []);
+
+  
   const cardsData = Array(9).fill({
     name: "Bernard Tappie",
     image: "https://res.cloudinary.com/dl2adjye7/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1711968499/Goldman_Sachs.svg_wbtwh9.png",
@@ -9,8 +19,8 @@ const ResponsiveCards = () => {
   });
 
   return (
-    <div className="bg-slate-900 px-4 py-12 flex justify-center">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-screen-xl">
+    <div className="bg-slate-900 px-4 py-12 flex justify-center ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-screen-xl " >
         {cardsData.map((card, index) => (
           <ShimmerBorderCard key={index} name={card.name} image={card.image} description={card.description} />
         ))}
@@ -21,7 +31,7 @@ const ResponsiveCards = () => {
 
 const ShimmerBorderCard = ({ name, image, description }) => {
   return (
-    <div className="group relative w-full max-w-sm overflow-hidden rounded-lg bg-slate-800 p-0.5 transition-all duration-500 hover:scale-[1.01] hover:bg-slate-800/50 cursor-pointer">
+    <div className="group relative w-full max-w-sm overflow-hidden rounded-lg bg-slate-800 p-0.5 transition-all duration-500 hover:scale-[1.01] hover:bg-slate-800/50 cursor-pointer"data-aos="zoom-in">
       <div className="relative z-10 flex flex-col items-center justify-center overflow-hidden rounded-[7px] bg-slate-900 p-8 transition-colors duration-500 group-hover:bg-slate-800">
         <img className="w-full h-40 rounded-lg" src={image} alt={name} />
 

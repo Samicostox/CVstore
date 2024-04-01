@@ -8,6 +8,9 @@ import CardT from './Components/card.js';
 import ResponsiveCards from './Components/cardsDispnay.js';
 import { LampDemo } from './Components/lamp.tsx';
 import { GlassNavigation } from '../navbar/navbar.js';
+import Footer from './Components/footer.js';
+import Cta from './Components/CTA.js';
+
 
 
 
@@ -20,6 +23,7 @@ function LandingPage() {
       {/* Use the Hero component */}
       <div className='md:pt-32 pt-16 '>
       <GlobeDemo />
+   
       </div>
       <div className='md:mt-20 mt-0'>
      <Companies></Companies>
@@ -51,6 +55,10 @@ function LandingPage() {
 
 
      <ResponsiveCards></ResponsiveCards>
+
+     <Cta></Cta>
+
+     <Footer></Footer>
     
     </div>
   );

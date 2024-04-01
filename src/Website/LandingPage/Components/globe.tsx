@@ -245,6 +245,7 @@ export function WebGLRendererConfig() {
 export function World(props: WorldProps) {
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const orbitRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -255,11 +256,26 @@ export function World(props: WorldProps) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const handleMouseEnter = () => {
+    if (orbitRef.current) {
+      orbitRef.current.enabled = true;
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (orbitRef.current) {
+      orbitRef.current.enabled = false;
+    }
+  };
+
   const { globeConfig } = props;
   const scene = new Scene();
   scene.fog = new Fog(0xffffff, 400, 2000);
   return (
-    <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}>
+    <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}
+    onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}>
+      
       <WebGLRendererConfig />
       <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
       <directionalLight
@@ -278,7 +294,7 @@ export function World(props: WorldProps) {
       <Globe {...props} />
       <OrbitControls
         enablePan={!isMobile}
-        enableZoom={!isMobile}
+        enableZoom={false}
         minDistance={cameraZ}
         maxDistance={cameraZ}
         autoRotateSpeed={1}

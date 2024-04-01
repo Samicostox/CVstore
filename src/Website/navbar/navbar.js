@@ -84,7 +84,7 @@ const Cursor = ({ hovered, scope }) => {
       }}
       transition={{ duration: 0.15 }}
       ref={scope}
-      className="pointer-events-none absolute z-0 grid h-[50px] w-[50px] origin-[0px_0px] place-content-center rounded-full bg-gradient-to-br from-indigo-600 from-40% to-indigo-400 text-2xl"
+      className="pointer-events-none absolute z-0 grid h-[50px] w-[50px] origin-[0px_0px] place-content-center rounded-full bg-gradient-to-br from-teal-600 from-40% to-teal-400 text-2xl"
     >
       <FiArrowUpRight className="text-white" />
     </motion.span>
