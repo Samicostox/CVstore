@@ -245,36 +245,28 @@ export function WebGLRendererConfig() {
 export function World(props: WorldProps) {
 
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const orbitRef = useRef(null);
+  const [allowGlobeInteraction, setAllowGlobeInteraction] = useState(!isMobile);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      setAllowGlobeInteraction(!mobile); // Disable interaction on mobile by default
     };
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleMouseEnter = () => {
-    if (orbitRef.current) {
-      orbitRef.current.enabled = true;
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (orbitRef.current) {
-      orbitRef.current.enabled = false;
-    }
+  const toggleGlobeInteraction = () => {
+    setAllowGlobeInteraction(!allowGlobeInteraction);
   };
 
   const { globeConfig } = props;
   const scene = new Scene();
   scene.fog = new Fog(0xffffff, 400, 2000);
   return (
-    <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}
-    onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}>
+    <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}>
       
       <WebGLRendererConfig />
       <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
@@ -293,12 +285,12 @@ export function World(props: WorldProps) {
       />
       <Globe {...props} />
       <OrbitControls
-        enablePan={true}
+        enablePan={allowGlobeInteraction}
         enableZoom={false}
+        enableRotate={allowGlobeInteraction}
         minDistance={cameraZ}
         maxDistance={cameraZ}
         autoRotateSpeed={1}
-        enableRotate={true}
         minPolarAngle={Math.PI / 3.5}
         maxPolarAngle={Math.PI - Math.PI / 3}
       />
