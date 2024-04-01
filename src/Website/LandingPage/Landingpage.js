@@ -14,7 +14,9 @@ import { GlassNavigation } from '../navbar/navbar.js';
 function LandingPage() {
   return (
     <div className="landing-page bg-slate-900">
+    
       <GlassNavigation></GlassNavigation>
+      
       {/* Use the Hero component */}
       <div className='md:pt-32 pt-16 '>
       <GlobeDemo />
