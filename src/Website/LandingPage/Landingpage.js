@@ -16,7 +16,7 @@ function LandingPage() {
     <div className="landing-page bg-slate-900">
       <GlassNavigation></GlassNavigation>
       {/* Use the Hero component */}
-      <div className='pt-32'>
+      <div className='md:pt-32 pt-16 '>
       <GlobeDemo />
       </div>
       <div className='md:mt-20 mt-0'>

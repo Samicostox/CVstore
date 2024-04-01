@@ -168,7 +168,7 @@ const MobileMenu = ({ menuOpen }) => {
           <TextLink text="History" />
           <TextLink text="Contact" />
         </div>
-        <SignInButton />
+     
       </div>
     </motion.div>
   );

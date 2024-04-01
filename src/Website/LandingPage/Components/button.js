@@ -12,7 +12,7 @@ export const RoundedSlideButton = () => {
   return (
     <button
       className={`
-        relative z-0 flex items-center gap-2 overflow-hidden rounded-lg border-[1px] 
+        relative z-0 flex items-center gap-2 overflow-hidden rounded-lg border-[1px] text-sm
         border-teal-400 px-4 py-2 font-semibold
         uppercase text-teal-400 transition-all duration-500
         
