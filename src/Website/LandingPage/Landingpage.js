@@ -7,14 +7,18 @@ import { LampTeal } from './Components/lampteal.js';
 import CardT from './Components/card.js';
 import ResponsiveCards from './Components/cardsDispnay.js';
 import { LampDemo } from './Components/lamp.tsx';
+import { GlassNavigation } from '../navbar/navbar.js';
 
 
 
 function LandingPage() {
   return (
     <div className="landing-page bg-slate-900">
+      <GlassNavigation></GlassNavigation>
       {/* Use the Hero component */}
+      <div className='pt-32'>
       <GlobeDemo />
+      </div>
       <div className='md:mt-20 mt-0'>
      <Companies></Companies>
      </div>
