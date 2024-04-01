@@ -394,37 +394,29 @@ export function GlobeDemo() {
   ];
 
   return (
-    <div className="flex flex-row items-center justify-center py-20 h-screen md:h-auto bg-slate-900 relative w-full ">
-      <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 1,
-          }}
-          className="div"
-        >
-          <h2 className="text-center text-4xl md:text-5xl font-bold text-white">
-            CV from Industry Leader Worldwide
-          </h2>
-          <p className="text-center text-base md:text-lg font-normal text-neutral-200 max-w-2xl mt-2 mx-auto">
-            We are collecting CV from interns and recently graduate from top companies in order to help you write yours and land your dream job!
-          </p>
-        </motion.div>
-        <News></News>
-        <div className="absolute w-full bottom-0 inset-x-0 h-16 md:h-40 bg-gradient-to-b pointer-events-none select-none from-transparent to-slate-900  z-40" />
-        <div className="absolute w-full bottom-0 md:-bottom-60 h-auto md:h-full z-10">
-        <Suspense fallback={<div>Loading...</div>}>
-            <World data={sampleArcs} globeConfig={globeConfig} />
-          </Suspense>
-        </div>
-      </div>
+    <div className="flex flex-row items-center justify-center py-20 h-screen md:h-auto bg-slate-900 relative w-full">
+  <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      className="div"
+    >
+      <h2 className="text-center text-4xl md:text-5xl font-bold text-white">
+        CV from Industry Leader Worldwide
+      </h2>
+      <p className="text-center text-base md:text-lg font-normal text-neutral-200 max-w-2xl mt-2 mx-auto">
+        We are collecting CV from interns and recently graduate from top companies in order to help you write yours and land your dream job!
+      </p>
+    </motion.div>
+    <News></News>
+    <div className="absolute w-full bottom-0 inset-x-0 h-40 md:h-40 bg-gradient-to-b pointer-events-none select-none from-transparent to-slate-900  z-40" />
+    <div className="absolute w-full bottom-0 md:-bottom-60 h-[50vh] md:h-full z-10">
+      <Suspense fallback={<div>Loading...</div>}>
+        <World data={sampleArcs} globeConfig={globeConfig} />
+      </Suspense>
     </div>
+  </div>
+</div>
   );
 }
