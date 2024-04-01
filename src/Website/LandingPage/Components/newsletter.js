@@ -65,7 +65,7 @@ import {
           type="submit"
           className="group flex shrink-0 items-center gap-1.5 rounded-full bg-gradient-to-br from-gray-50 to-gray-400 px-4 py-3 text-sm font-medium text-gray-900 transition-transform active:scale-[0.985]"
         >
-          <span>Join Waitlist</span>
+          <span>Join NewsLetter</span>
           <FiArrowRight className="-mr-4 opacity-0 transition-all group-hover:-mr-0 group-hover:opacity-100 group-active:-rotate-45" />
         </button>
   
