@@ -244,13 +244,9 @@ export function WebGLRendererConfig() {
 
 export function World(props: WorldProps) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [allowGlobeInteraction, setAllowGlobeInteraction] = useState(!isMobile);
-
   useEffect(() => {
     const handleResize = () => {
-      const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-      setAllowGlobeInteraction(!mobile);
+      setIsMobile(window.innerWidth < 768);
     };
 
     window.addEventListener('resize', handleResize);
@@ -262,50 +258,33 @@ export function World(props: WorldProps) {
   scene.fog = new Fog(0xffffff, 400, 2000);
 
   return (
-    <>
-      <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}>
-        <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
-        <directionalLight
-          color={globeConfig.directionalLeftLight}
-          position={new Vector3(-400, 100, 400)}
-        />
-        <directionalLight
-          color={globeConfig.directionalTopLight}
-          position={new Vector3(-200, 500, 200)}
-        />
-        <pointLight
-          color={globeConfig.pointLight}
-          position={new Vector3(-200, 500, 200)}
-          intensity={0.8}
-        />
-        <Globe {...props} />
-        <OrbitControls
-          enablePan={allowGlobeInteraction}
-          enableZoom={false}
-          enableRotate={allowGlobeInteraction}
-          minDistance={cameraZ}
-          maxDistance={cameraZ}
-          autoRotateSpeed={1}
-          minPolarAngle={Math.PI / 3.5}
-          maxPolarAngle={Math.PI - Math.PI / 3}
-        />
-      </Canvas>
-      {isMobile && (
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            width: '100%',
-            height: '100%',
-            zIndex: 10, // Adjust zIndex to make sure it's above the globe but below other interactive elements
-          }}
-          className="mobile-overlay"
-        ></div>
-      )}
-    </>
+    <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}>
+      <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
+      <directionalLight
+        color={globeConfig.directionalLeftLight}
+        position={new Vector3(-400, 100, 400)}
+      />
+      <directionalLight
+        color={globeConfig.directionalTopLight}
+        position={new Vector3(-200, 500, 200)}
+      />
+      <pointLight
+        color={globeConfig.pointLight}
+        position={new Vector3(-200, 500, 200)}
+        intensity={0.8}
+      />
+      <Globe {...props} />
+      <OrbitControls
+        enablePan={!isMobile}
+        enableZoom={!isMobile}
+        enableRotate={!isMobile}
+        minDistance={cameraZ}
+        maxDistance={cameraZ}
+        autoRotateSpeed={1}
+        minPolarAngle={Math.PI / 3.5}
+        maxPolarAngle={Math.PI - Math.PI / 3}
+      />
+    </Canvas>
   );
 }
 export function hexToRgb(hex: string) {
