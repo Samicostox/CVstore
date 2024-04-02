@@ -16,7 +16,7 @@ import Cta from './Components/CTA.js';
 
 function LandingPage() {
   return (
-    <div className="landing-page bg-slate-900">
+    <div className="landing-page bg-slate-900 overflow-x-hidden">
     
       <GlassNavigation></GlassNavigation>
       
