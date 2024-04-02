@@ -258,7 +258,13 @@ export function World(props: WorldProps) {
   scene.fog = new Fog(0xffffff, 400, 2000);
 
   return (
-    <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}>
+    <Canvas
+    style={{
+      pointerEvents: isMobile ? 'none' : 'all',
+    }}
+    scene={scene}
+    camera={new PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 1000)}
+  >
       <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
       <directionalLight
         color={globeConfig.directionalLeftLight}
