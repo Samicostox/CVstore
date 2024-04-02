@@ -243,7 +243,6 @@ export function WebGLRendererConfig() {
 }
 
 export function World(props: WorldProps) {
-
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [allowGlobeInteraction, setAllowGlobeInteraction] = useState(!isMobile);
 
@@ -251,53 +250,64 @@ export function World(props: WorldProps) {
     const handleResize = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-      setAllowGlobeInteraction(!mobile); // Disable interaction on mobile by default
+      setAllowGlobeInteraction(!mobile);
     };
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const toggleGlobeInteraction = () => {
-    setAllowGlobeInteraction(!allowGlobeInteraction);
-  };
-
-  const { globeConfig } = props;
+  const globeConfig: GlobeConfig = props.globeConfig;
   const scene = new Scene();
   scene.fog = new Fog(0xffffff, 400, 2000);
+
   return (
-    <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}>
-      
-      <WebGLRendererConfig />
-      <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
-      <directionalLight
-        color={globeConfig.directionalLeftLight}
-        position={new Vector3(-400, 100, 400)}
-      />
-      <directionalLight
-        color={globeConfig.directionalTopLight}
-        position={new Vector3(-200, 500, 200)}
-      />
-      <pointLight
-        color={globeConfig.pointLight}
-        position={new Vector3(-200, 500, 200)}
-        intensity={0.8}
-      />
-      <Globe {...props} />
-      <OrbitControls
-        enablePan={allowGlobeInteraction}
-        enableZoom={false}
-        enableRotate={allowGlobeInteraction}
-        minDistance={cameraZ}
-        maxDistance={cameraZ}
-        autoRotateSpeed={1}
-        minPolarAngle={Math.PI / 3.5}
-        maxPolarAngle={Math.PI - Math.PI / 3}
-      />
-    </Canvas>
+    <>
+      <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}>
+        <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
+        <directionalLight
+          color={globeConfig.directionalLeftLight}
+          position={new Vector3(-400, 100, 400)}
+        />
+        <directionalLight
+          color={globeConfig.directionalTopLight}
+          position={new Vector3(-200, 500, 200)}
+        />
+        <pointLight
+          color={globeConfig.pointLight}
+          position={new Vector3(-200, 500, 200)}
+          intensity={0.8}
+        />
+        <Globe {...props} />
+        <OrbitControls
+          enablePan={allowGlobeInteraction}
+          enableZoom={false}
+          enableRotate={allowGlobeInteraction}
+          minDistance={cameraZ}
+          maxDistance={cameraZ}
+          autoRotateSpeed={1}
+          minPolarAngle={Math.PI / 3.5}
+          maxPolarAngle={Math.PI - Math.PI / 3}
+        />
+      </Canvas>
+      {isMobile && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 10, // Adjust zIndex to make sure it's above the globe but below other interactive elements
+          }}
+          className="mobile-overlay"
+        ></div>
+      )}
+    </>
   );
 }
-
 export function hexToRgb(hex: string) {
   var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
   hex = hex.replace(shorthandRegex, function (m, r, g, b) {
