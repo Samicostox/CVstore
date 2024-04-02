@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FiArrowRight, FiAlertCircle ,FiCheckCircle} from "react-icons/fi";
 import { animate, useMotionTemplate, useMotionValue, AnimatePresence, motion } from "framer-motion";
+import { FaTiktok } from 'react-icons/fa'; // Assuming FaTiktok is the TikTok icon
 
 const News = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -80,6 +81,10 @@ const SpringModal = ({ isOpen, setIsOpen }) => {
     setIsOpen(false);
   };
 
+  const handleFollowUsClick = () => {
+    window.location.href = "https://www.tiktok.com/@innovation_studios_uk";
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -97,32 +102,33 @@ const SpringModal = ({ isOpen, setIsOpen }) => {
             onClick={(e) => e.stopPropagation()}
             className="relative overflow-hidden w-full max-w-lg rounded-lg shadow-xl cursor-default bg-gradient-to-br from-slate-900 to-teal-500 p-6 text-white"
           >
-           <FiCheckCircle className="absolute text-white/10 rotate-12 -top-24 -left-24 text-[250px] z-0" />
-              <div className="relative z-10 flex flex-col items-center">
-                <div className="w-16 h-16 mb-2 rounded-full bg-white text-3xl text-teal-600 grid place-items-center">
-                  <FiCheckCircle />
-                </div>
-                <h3 className="mb-2 text-3xl font-bold text-center">
-                  You Are Subscribed!
-                </h3>
-                <p className="mb-6 text-center">
-                  We will keep you updated when new CVs are being uploaded into this website!
-                </p>
-                <div className="flex gap-2 w-full">
-                  <button
-                    onClick={handleClose}
-                    className="w-full py-2 font-semibold text-white bg-transparent rounded hover:bg-white/10 transition-colors"
-                  >
-                    Follow Us
-                  </button>
-                  <button
-                    onClick={handleClose}
-                    className="w-full py-2 font-semibold text-teal-600 bg-white rounded hover:opacity-90 transition-opacity"
-                  >
-                    Keep Browsing
-                  </button>
-                </div>
+            <FiCheckCircle className="absolute text-white/10 rotate-12 -top-24 -left-24 text-[250px] z-0" />
+            <div className="relative z-10 flex flex-col items-center">
+              <div className="w-16 h-16 mb-2 rounded-full bg-white text-3xl text-teal-600 grid place-items-center">
+                <FiCheckCircle />
               </div>
+              <h3 className="mb-2 text-3xl font-bold text-center">
+                You Are Subscribed!
+              </h3>
+              <p className="mb-6 text-center">
+                We will keep you updated when new CVs are being uploaded into this website!
+              </p>
+              <div className="flex gap-2 w-full">
+                <button
+                  onClick={handleFollowUsClick}
+                  className="w-full py-2 font-semibold text-white bg-transparent rounded flex items-center justify-center gap-2 hover:bg-white/10 transition-colors"
+                >
+                  <FaTiktok className="text-white hover:text-teal-500 transition-colors"/>
+                  Follow Us
+                </button>
+                <button
+                  onClick={handleClose}
+                  className="w-full py-2 font-semibold text-teal-600 bg-white rounded hover:opacity-90 transition-opacity"
+                >
+                  Keep Browsing
+                </button>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       )}
@@ -131,8 +137,6 @@ const SpringModal = ({ isOpen, setIsOpen }) => {
 };
 
 export default News;
-
-  
 
 
   

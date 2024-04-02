@@ -1,5 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { FiAlertCircle } from "react-icons/fi";
+import { FaTiktok } from 'react-icons/fa'; // Assuming FaTiktok is the TikTok icon
+
 import { useState } from "react";
 
 const ExampleWrapper = () => {
