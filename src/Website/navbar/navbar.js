@@ -2,6 +2,9 @@ import { FiMenu, FiArrowUpRight } from "react-icons/fi";
 import { useEffect, useRef, useState } from "react";
 import { useAnimate, motion } from "framer-motion";
 import ButtonWrapper from "../LandingPage/Components/button";
+import { FaTiktok, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import React from 'react';
+
 
 const Example = () => {
   return (
@@ -99,33 +102,37 @@ const Logo = () => (
 
 const Links = () => (
   <div className="hidden items-center gap-2 md:flex">
-    <GlassLink text="Products" />
-    <GlassLink text="History" />
-    <GlassLink text="Contact" />
+    <GlassLink href="https://www.tiktok.com/@innovation_studios_uk" icon={<FaTiktok />} text="TikTok" />
+    <GlassLink href="https://www.instagram.com/innovationstudiosuk/" icon={<FaInstagram />} text="Instagram" />
+    <GlassLink href="https://www.linkedin.com/company/innovation-studios-uk" icon={<FaLinkedin />} text="LinkedIn" />
   </div>
 );
 
-const GlassLink = ({ text }) => {
+
+const GlassLink = ({ href, icon, text }) => {
   return (
     <a
-      href="#"
-      className="group relative scale-100 overflow-hidden rounded-lg px-4 py-2 transition-transform hover:scale-105 active:scale-95"
+      href={href}
+      className="group relative scale-100 overflow-hidden rounded-lg px-4 py-2 transition-transform hover:scale-105 active:scale-95 flex items-center gap-2"
     >
+      {React.cloneElement(icon, { className: "text-white group-hover:text-teal-500 transition-colors z-10" })}
       <span className="relative z-10 text-white/90 transition-colors group-hover:text-white">
         {text}
       </span>
-      <span className="absolute inset-0 z-0 bg-gradient-to-br from-white/20 to-white/5 opacity-0 transition-opacity group-hover:opacity-100" />
+      <span className="absolute inset-0 z-0 bg-gradient-to-br from-white/20 to-white/5 opacity-0 transition-opacity group-hover:opacity-100 group-hover:bg-gray-600" />
     </a>
   );
 };
 
-const TextLink = ({ text }) => {
+const TextLink = ({ href, icon, text }) => {
   return (
-    <a href="#" className="text-white/90 transition-colors hover:text-white">
+    <a href={href} className="flex items-center gap-2 text-white/90 transition-colors hover:text-white">
+      {React.cloneElement(icon, { className: "text-white hover:text-teal-500 z-10" })}
       {text}
     </a>
   );
 };
+
 
 const Buttons = ({ setMenuOpen }) => (
   <div className="flex items-center gap-4">
@@ -163,12 +170,9 @@ const MobileMenu = ({ menuOpen }) => {
       className="block overflow-hidden md:hidden"
     >
       <div className="flex items-center justify-between px-4 pb-4">
-        <div className="flex items-center gap-4">
-          <TextLink text="Products" />
-          <TextLink text="History" />
-          <TextLink text="Contact" />
-        </div>
-     
+        <TextLink href="https://www.tiktok.com/@innovation_studios_uk" icon={<FaTiktok />} text="TikTok" />
+        <TextLink href="https://www.instagram.com/innovationstudiosuk/" icon={<FaInstagram />} text="Instagram" />
+        <TextLink href="https://www.linkedin.com/company/innovation-studios-uk" icon={<FaLinkedin />} text="LinkedIn" />
       </div>
     </motion.div>
   );

@@ -9,8 +9,13 @@ const ButtonWrapper = () => {
 };
 
 export const RoundedSlideButton = () => {
+  const handleButtonClick = () => {
+    window.location.href = "https://innovationstudios.uk/recruitment";
+  };
+
   return (
     <button
+      onClick={handleButtonClick}
       className={`
         relative z-0 flex items-center gap-2 overflow-hidden rounded-lg border-[1px] text-sm
         border-teal-400 px-4 py-2 font-semibold
