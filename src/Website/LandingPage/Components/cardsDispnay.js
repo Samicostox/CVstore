@@ -6,32 +6,32 @@ import 'aos/dist/aos.css';
 const ResponsiveCards = () => {
     useEffect(() => {
         AOS.init({
-          // settings here
           duration: 1000, // Global animation duration
         });
       }, []);
 
-  
+  // Example data, you can replace downloadUrl with actual URLs to the files you want to download
   const cardsData = Array(9).fill({
     name: "Bernard Tappie",
     image: "https://res.cloudinary.com/dl2adjye7/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1711968499/Goldman_Sachs.svg_wbtwh9.png",
-    description: "Est ipsum sed blanditiis iste molestias nemo nobis repellendus nisi dolorum itaque optio impedit cum voluptatem facilis minima, quasi laborum. Nihil, quaerat."
+    description: "Est ipsum sed blanditiis iste molestias nemo nobis repellendus nisi dolorum itaque optio impedit cum voluptatem facilis minima, quasi laborum. Nihil, quaerat.",
+    downloadUrl: "https://res.cloudinary.com/dl2adjye7/raw/upload/v1712062897/SteveNimoCV_mrvxx7.docx" // Example download link, replace with actual file URL
   });
 
   return (
     <div className="bg-slate-900 px-4 py-12 flex justify-center ">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-screen-xl " >
         {cardsData.map((card, index) => (
-          <ShimmerBorderCard key={index} name={card.name} image={card.image} description={card.description} />
+          <ShimmerBorderCard key={index} name={card.name} image={card.image} description={card.description} downloadUrl={card.downloadUrl} />
         ))}
       </div>
     </div>
   );
 };
 
-const ShimmerBorderCard = ({ name, image, description }) => {
+const ShimmerBorderCard = ({ name, image, description, downloadUrl }) => {
   return (
-    <div className="group relative w-full max-w-sm overflow-hidden rounded-lg bg-slate-800 p-0.5 transition-all duration-500 hover:scale-[1.01] hover:bg-slate-800/50 cursor-pointer"data-aos="zoom-in">
+    <a href={downloadUrl} download target="_blank" rel="noopener noreferrer" className="group relative w-full max-w-sm overflow-hidden rounded-lg bg-slate-800 p-0.5 transition-all duration-500 hover:scale-[1.01] hover:bg-slate-800/50 cursor-pointer" data-aos="zoom-in">
       <div className="relative z-10 flex flex-col items-center justify-center overflow-hidden rounded-[7px] bg-slate-900 p-8 transition-colors duration-500 group-hover:bg-slate-800">
         <img className="w-full h-40 rounded-lg" src={image} alt={name} />
 
@@ -54,7 +54,7 @@ const ShimmerBorderCard = ({ name, image, description }) => {
         }}
         className="absolute inset-0 z-0 bg-gradient-to-br from-indigo-200 via-indigo-200/0 to-indigo-200 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
       />
-    </div>
+    </a>
   );
 };
 
