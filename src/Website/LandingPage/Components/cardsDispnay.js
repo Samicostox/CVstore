@@ -21,7 +21,7 @@ const ResponsiveCards = () => {
         name: "Goldman Sachs",
         image: "https://res.cloudinary.com/dl2adjye7/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1711968499/Goldman_Sachs.svg_wbtwh9.png",
         description: "A leading global investment banking, securities, and investment management firm, known for its financial expertise and commitment to client success.",
-        downloadUrl: "https://res.cloudinary.com/dl2adjye7/raw/upload/v1712062897/SteveNimoCV_mrvxx7.docx"
+        downloadUrl: "https://res.cloudinary.com/dl2adjye7/raw/upload/v1712488977/Goldman-Sachs_furnlc.docx"
     },
     {status: "1 day ", name: "Amazon", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313049/Untitled_design_17_ptzwq9.png", description: "A global e-commerce and cloud computing giant, renowned for its technological innovation, extensive product offerings, and customer-focused services.", downloadUrl: "<Amazon_Download_URL>" },
     {status: "2 days", name: "Qube", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313160/Untitled_design_18_ozqsgm.png", description: "An innovative technology company specializing in digital transformation and business intelligence solutions, driving efficiency and growth for clients.", downloadUrl: "<Qube_Download_URL>" },
