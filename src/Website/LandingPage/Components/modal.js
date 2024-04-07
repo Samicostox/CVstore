@@ -3,6 +3,7 @@ import { FiAlertCircle } from "react-icons/fi";
 import { FaTiktok } from 'react-icons/fa'; // Assuming FaTiktok is the TikTok icon
 
 import { useState } from "react";
+import News from "./newsletter";
 
 const ExampleWrapper = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,11 +44,12 @@ const SpringModal = ({ isOpen, setIsOpen }) => {
                 <FiAlertCircle />
               </div>
               <h3 className="text-3xl font-bold text-center mb-2">
-                You Are Subscribed!
+                Not Available Yet
               </h3>
               <p className="text-center mb-6">
-                We will keep you updated when new CVs are being uploaded into this website!
+                Subscribe to be kept updated when it will be release
               </p>
+              <News></News>
               <div className="flex gap-2">
                 <button
                   onClick={() => setIsOpen(false)}

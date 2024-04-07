@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { FiArrowRight, FiAlertCircle ,FiCheckCircle} from "react-icons/fi";
 import { animate, useMotionTemplate, useMotionValue, AnimatePresence, motion } from "framer-motion";
 import { FaTiktok } from 'react-icons/fa'; // Assuming FaTiktok is the TikTok icon
+import { TextShimmerDemo } from "./button2";
 
 const News = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,9 +50,11 @@ const BeamInput = ({ setIsOpen }) => {
   };
 
   return (
+
+    <div>
     <form
       onSubmit={handleSubmit}
-      className="validate relative flex w-full max-w-md items-center gap-2 rounded-full border border-white/20 bg-gradient-to-br from-white/20 to-white/5 py-1.5 pl-6 pr-1.5"
+      className="validate relative flex w-full max-w-md items-center gap-2 rounded-full border border-white/20 bg-gradient-to-br from-white/20 to-white/5 py-1.5 pl-6 pr-1.5 z-40"
       onClick={() => inputRef.current?.focus()}
     >
       <input
@@ -61,7 +64,7 @@ const BeamInput = ({ setIsOpen }) => {
         id="mce-EMAIL"
         required
         placeholder="Enter your email"
-        className="w-full bg-transparent text-base text-white placeholder-white/80 focus:outline-none"
+        className="w-full bg-transparent text-base text-white placeholder-white/80 focus:outline-none z-40"
       />
       <button
         type="submit"
@@ -72,7 +75,12 @@ const BeamInput = ({ setIsOpen }) => {
         <span>Join Newsletter</span>
         <FiArrowRight className="-mr-4 opacity-0 transition-all group-hover:-mr-0 group-hover:opacity-100 group-active:-rotate-45" />
       </button>
+      
+   
     </form>
+
+    </div>
+
   );
 };
 

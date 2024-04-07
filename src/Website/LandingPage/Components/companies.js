@@ -1,15 +1,16 @@
 import Marquee from "../../../utils/marquee.tsx";
 
-
 const companies = [
-  "Google",
-  "Microsoft",
-  "Amazon",
-  "Netflix",
-  "YouTube",
-  "Instagram",
-  "Uber",
-  "Spotify",
+  { name: "Goldman Sachs", url: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712483444/10_jsx7lx.png" },
+  { name: "Barclays", url: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712483444/18_gzkxpm.png" },
+  { name: "Bank of America", url: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712483444/17_nvkboi.png" },
+  { name: "BlackRock", url: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712483444/8_oxtkwh.png" },
+  { name: "Amazon", url: "https://cdn.magicui.design/companies/Amazon.svg" },
+  { name: "QRT", url: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712483443/11_umvdgq.png" },
+  { name: "Morgan Stanley", url: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712483443/12_lduigl.png" },
+  { name: "Deloitte", url: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712483443/13_w9uqq9.png" },
+  { name: "Wise", url: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712483444/14_fppefx.png" },
+  { name: "Natwest", url: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712483444/15_mygzhx.png" },
 ];
 
 export function Companies() {
@@ -22,12 +23,12 @@ export function Companies() {
           </h3>
           <div className="relative mt-6">
             <Marquee className="max-w-full [--duration:40s]">
-              {companies.map((logo, idx) => (
+              {companies.map((company, idx) => (
                 <img
                   key={idx}
-                  src={`https://cdn.magicui.design/companies/${logo}.svg`}
-                  className="h-10 w-28 brightness-0 invert"
-                  alt={logo}
+                  src={company.url}
+                  className="h-25 w-40 brightness-0 invert"
+                  alt={company.name}
                 />
               ))}
             </Marquee>

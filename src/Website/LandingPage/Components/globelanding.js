@@ -403,14 +403,14 @@ export function GlobeDemo() {
       className="div"
     >
       <h2 className="text-center text-4xl md:text-5xl font-bold text-white">
-        CV from Industry Leader Worldwide
-      </h2>
-      <p className="text-center text-base md:text-lg font-normal text-neutral-200 max-w-2xl mt-2 mx-auto">
-        We are collecting CV from interns and recently graduate from top companies in order to help you write yours and land your dream job!
-      </p>
+    CVs from Recent Graduates & Interns in Top Companies
+</h2>
+<p className="text-center text-base md:text-lg font-normal text-neutral-200 max-w-4xl mt-4 mx-auto">
+    Access resumes from interns and graduates who've entered competitive companies, designed to guide you in creating your own effective CV. Subscribe to our newsletter for updates on new additions.
+</p>
     </motion.div>
     <News></News>
-    <div className="absolute w-full bottom-0 inset-x-0 h-40 md:h-40 bg-gradient-to-b pointer-events-none select-none from-transparent to-slate-900  z-40 mt-6" />
+    <div className="absolute w-full bottom-0 inset-x-0 h-40 md:h-40 bg-gradient-to-b pointer-events-none select-none from-transparent to-slate-900 z-40 mt-6" />
     <div className="absolute w-full bottom-0 md:-bottom-60 h-[45vh] md:h-full z-10 pointer-events-none md:pointer-events-auto">
       <Suspense fallback={<div>Loading...</div>}>
         <World data={sampleArcs} globeConfig={globeConfig} />
