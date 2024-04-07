@@ -76,7 +76,7 @@ const ShimmerBorderCard = ({ name, image, description, downloadUrl, status, onUn
       onClick={handleCardClick}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group relative w-full max-w-sm overflow-hidden rounded-lg bg-slate-800 p-0.5 transition-all duration-500 ${isAvailable ? 'hover:scale-[1.01] hover:bg-slate-800/50 cursor-pointer' : 'cursor-not-allowed'}`}
+      className={`group relative w-full max-w-sm overflow-hidden rounded-lg bg-slate-800 p-0.5 transition-all duration-500 `}
       data-aos="zoom-in"
     >
       <div className="relative z-10 flex flex-col items-start justify-center overflow-hidden rounded-[7px] bg-slate-900 p-8 transition-colors duration-500 group-hover:bg-slate-800">
