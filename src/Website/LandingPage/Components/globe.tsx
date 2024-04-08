@@ -261,7 +261,7 @@ export function World(props: WorldProps) {
     <Canvas
     style={{
       pointerEvents: isMobile ? 'none' : 'all',
-      marginTop: '40px'
+      marginTop: isMobile ? '70px' : '30px'
     }}
     scene={scene}
     camera={new PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 1000)}
