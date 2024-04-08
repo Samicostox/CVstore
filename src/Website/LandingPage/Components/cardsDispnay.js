@@ -31,7 +31,21 @@ const ResponsiveCards = () => {
     {status: "6 days", name: "Natwest", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313705/Untitled_design_23_vkcffq.png", description: "A major retail and commercial bank in the United Kingdom, known for its customer service, banking operations, and financial solutions.", downloadUrl: "<Natwest_Download_URL>" },
     {status: "7 days", name: "Wise", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313625/Untitled_design_22_yn8tws.png", description: "A financial technology company offering innovative money transfer services, known for its transparent fees and efficient cross-border payments.", downloadUrl: "<Natwest_Download_URL>" },
     {status: "8 days", name: "BlackRock", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712481839/Untitled_design_24_te5qrr.png", description: "The world's largest asset manager, providing investment, advisory, and risk management solutions to institutional and retail clients globally.", downloadUrl: "<Natwest_Download_URL>" },
-    {status: "9 days", name: "Bank of America", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712481990/Untitled_design_25_hgkfax.png", description: " A leading American multinational investment bank and financial services holding company, serving individual consumers, small and middle-market businesses.", downloadUrl: "<Natwest_Download_URL>" }
+    {status: "9 days", name: "Bank of America", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712481990/Untitled_design_25_hgkfax.png", description: " A leading American multinational investment bank and financial services holding company, serving individual consumers.", downloadUrl: "<Natwest_Download_URL>" },
+    {
+      "status": "10 days",
+      "name": "McKinsey",
+      "image": "https://res.cloudinary.com/dl2adjye7/image/upload/v1712569143/Untitled_design_27_vdfo9b.png",
+      "description": "A global management consulting firm that advises on strategic, operational, and organizational matters, serving a wide range of industries and public sector entities.",
+      "downloadUrl": "<Natwest_Download_URL>"
+  },
+  {
+      "status": "11 days",
+      "name": "BCG",
+      "image": "https://res.cloudinary.com/dl2adjye7/image/upload/v1712569251/bcg_fk645r.png",
+      "description": "A worldwide management consulting firm providing advisory services in strategy, operations, organization, and digital transformation for various sectors.",
+      "downloadUrl": "<Natwest_Download_URL>"
+  }
 ];
 
 
@@ -150,7 +164,7 @@ const SpringModal = ({ isOpen, setIsOpen }) => {
                 Not Available Yet
               </h3>
               <p className="text-center mb-6">
-                Subscribe to be kept updated when it will be release
+              Subscribe to be informed on the day this CV is released
               </p>
               <News></News>
               <div className="flex gap-2 w-full mt-6">
