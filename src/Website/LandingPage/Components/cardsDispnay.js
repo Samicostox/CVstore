@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FiAlertCircle } from "react-icons/fi";
 import { FaTiktok } from 'react-icons/fa'; // Assuming FaTiktok is the TikTok icon
 import News from './newsletter2.js';
+import NewsSendDoc from './newsletter_senddoc.js';
 
 const ResponsiveCards = () => {
   useEffect(() => {
@@ -35,15 +36,15 @@ const ResponsiveCards = () => {
     {status: "available", name: "Amazon", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313049/Untitled_design_17_ptzwq9.png", description: "A global e-commerce and cloud computing giant, renowned for its technological innovation, extensive product offerings, and customer-focused services.", downloadUrl: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712914526/amazon_1_dbmyv8.pdf" },
     {status: "available", name: "Qube", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313160/Untitled_design_18_ozqsgm.png", description: "An innovative technology company specializing in digital transformation and business intelligence solutions, driving efficiency and growth for clients.", downloadUrl: "https://res.cloudinary.com/dl2adjye7/image/upload/v1713175248/qube_j0cpjf.pdf" },
    
-    {status: "1 days", name: "Barclays", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313333/Untitled_design_20_eeralu.png", description: "A British multinational bank and financial services company, offering products and services across personal, corporate, and investment banking.", downloadUrl: "<Barclays_Download_URL>" },
-    {status: "2 days", name: "Deloitte", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313412/Untitled_design_21_dr42ev.png", description: "One of the largest professional services networks in the world, providing audit, consulting, financial advisory, risk advisory, tax, and related services.", downloadUrl: "<Deloitte_Download_URL>" },
-    {status: "3 days", name: "Natwest", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313705/Untitled_design_23_vkcffq.png", description: "A major retail and commercial bank in the United Kingdom, known for its customer service, banking operations, and financial solutions.", downloadUrl: "<Natwest_Download_URL>" },
-    {status: "4 days", name: "Wise", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313625/Untitled_design_22_yn8tws.png", description: "A financial technology company offering innovative money transfer services, known for its transparent fees and efficient cross-border payments.", downloadUrl: "<Natwest_Download_URL>" },
+    {status: "available", name: "Barclays", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313333/Untitled_design_20_eeralu.png", description: "A British multinational bank and financial services company, offering products and services across personal, corporate, and investment banking.", downloadUrl: "https://res.cloudinary.com/dl2adjye7/image/upload/v1713278705/barclays_2_dv09jt.pdf" },
+    {status: "1 day", name: "Deloitte", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313412/Untitled_design_21_dr42ev.png", description: "One of the largest professional services networks in the world, providing audit, consulting, financial advisory, risk advisory, tax, and related services.", downloadUrl: "<Deloitte_Download_URL>" },
+    {status: "2 days", name: "Natwest", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313705/Untitled_design_23_vkcffq.png", description: "A major retail and commercial bank in the United Kingdom, known for its customer service, banking operations, and financial solutions.", downloadUrl: "<Natwest_Download_URL>" },
+    {status: "3 days", name: "Wise", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313625/Untitled_design_22_yn8tws.png", description: "A financial technology company offering innovative money transfer services, known for its transparent fees and efficient cross-border payments.", downloadUrl: "<Natwest_Download_URL>" },
     
-    {status: "5 days", name: "Bank of America", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712481990/Untitled_design_25_hgkfax.png", description: " A leading American multinational investment bank and financial services holding company, serving individual consumers.", downloadUrl: "<Natwest_Download_URL>" },
+    {status: "4 days", name: "Bank of America", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712481990/Untitled_design_25_hgkfax.png", description: " A leading American multinational investment bank and financial services holding company, serving individual consumers.", downloadUrl: "<Natwest_Download_URL>" },
     
   {
-      "status": "6 days",
+      "status": "5 days",
       "name": "BCG",
       "image": "https://res.cloudinary.com/dl2adjye7/image/upload/v1712569251/bcg_fk645r.png",
       "description": "A worldwide management consulting firm providing advisory services in strategy, operations, organization, and digital transformation for various sectors.",
@@ -192,5 +193,66 @@ const SpringModal = ({ isOpen, setIsOpen }) => {
     </AnimatePresence>
   );
 };
+
+const SpringModal2 = ({ isOpen, setIsOpen,name,link }) => {
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  const handleFollowUsClick = () => {
+    window.location.href = "https://www.tiktok.com/@innovation_studios_uk";
+  };
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setIsOpen(false)}
+          className="bg-slate-900/20 backdrop-blur p-8 fixed inset-0 z-50 grid place-items-center overflow-y-scroll cursor-pointer"
+        >
+          <motion.div
+            initial={{ scale: 0, rotate: "12.5deg" }}
+            animate={{ scale: 1, rotate: "0deg" }}
+            exit={{ scale: 0, rotate: "0deg" }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative overflow-hidden w-full max-w-lg rounded-lg shadow-xl cursor-default bg-gradient-to-br from-slate-900 to-teal-500 p-6 text-white"
+          >
+            <FiAlertCircle className="text-white/10 rotate-12 text-[250px] absolute z-0 -top-24 -left-24" />
+            <div className="relative z-10">
+              <div className="bg-white w-16 h-16 mb-2 rounded-full text-3xl text-teal-600 grid place-items-center mx-auto">
+                <FiAlertCircle />
+              </div>
+              <h3 className="text-3xl font-bold text-center mb-2">
+                Not Available Yet
+              </h3>
+              <p className="text-center mb-6">
+              Subscribe to be informed on the day this CV is released
+              </p>
+              <NewsSendDoc name={name} link={link}></NewsSendDoc>
+              <div className="flex gap-2 w-full mt-6">
+                <button
+                  onClick={handleFollowUsClick}
+                  className="w-full py-2 font-semibold text-white bg-slate-900 rounded flex items-center justify-center gap-2 hover:bg-white/10 transition-colors"
+                >
+                  <FaTiktok className="text-white hover:text-teal-500 transition-colors"/>
+                  Follow Us
+                </button>
+                <button
+                  onClick={handleClose}
+                  className="w-full py-2 font-semibold text-teal-600 bg-white rounded hover:opacity-90 transition-opacity"
+                >
+                  Keep Browsing
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
 
 export default ResponsiveCards;
