@@ -6,17 +6,21 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FiAlertCircle } from "react-icons/fi";
 import { FaTiktok } from 'react-icons/fa'; // Assuming FaTiktok is the TikTok icon
 import News from './newsletter2.js';
-import NewsSendDoc from './newsletter_senddoc.js';
+
 
 const ResponsiveCards = () => {
   useEffect(() => {
       AOS.init({ duration: 1000 });
+      fetchCards();
   }, []);
 
   const [isOpen, setIsOpen] = useState(false);
+  
+  const [cardsData, setCardsData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Example data, you can replace downloadUrl with actual URLs to the files you want to download
-  const cardsData = [
+  const cardsData2 = [
     {
         status: "available",
         name: "Goldman Sachs",
@@ -51,6 +55,21 @@ const ResponsiveCards = () => {
       "downloadUrl": "<Natwest_Download_URL>"
   }
 ];
+const fetchCards = async () => {
+  try {
+    const response = await fetch('https://onecvadayback-a45e67a4a10c.herokuapp.com/api/cards/');
+    if (!response.ok) throw new Error('Network response was not ok');
+    const data = await response.json();
+    setCardsData(data);
+    setIsLoading(false);
+  } catch (error) {
+    console.error('Failed to fetch cards:', error);
+    setIsLoading(false);
+  }
+};
+
+// Render a loading message or error message depending on the fetch status
+if (isLoading) return <p>Loading...</p>;
 
 
 // In ResponsiveCards component
@@ -194,65 +213,7 @@ const SpringModal = ({ isOpen, setIsOpen }) => {
   );
 };
 
-const SpringModal2 = ({ isOpen, setIsOpen,name,link }) => {
-  const handleClose = () => {
-    setIsOpen(false);
-  };
 
-  const handleFollowUsClick = () => {
-    window.location.href = "https://www.tiktok.com/@innovation_studios_uk";
-  };
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={() => setIsOpen(false)}
-          className="bg-slate-900/20 backdrop-blur p-8 fixed inset-0 z-50 grid place-items-center overflow-y-scroll cursor-pointer"
-        >
-          <motion.div
-            initial={{ scale: 0, rotate: "12.5deg" }}
-            animate={{ scale: 1, rotate: "0deg" }}
-            exit={{ scale: 0, rotate: "0deg" }}
-            onClick={(e) => e.stopPropagation()}
-            className="relative overflow-hidden w-full max-w-lg rounded-lg shadow-xl cursor-default bg-gradient-to-br from-slate-900 to-teal-500 p-6 text-white"
-          >
-            <FiAlertCircle className="text-white/10 rotate-12 text-[250px] absolute z-0 -top-24 -left-24" />
-            <div className="relative z-10">
-              <div className="bg-white w-16 h-16 mb-2 rounded-full text-3xl text-teal-600 grid place-items-center mx-auto">
-                <FiAlertCircle />
-              </div>
-              <h3 className="text-3xl font-bold text-center mb-2">
-                Not Available Yet
-              </h3>
-              <p className="text-center mb-6">
-              Subscribe to be informed on the day this CV is released
-              </p>
-              <NewsSendDoc name={name} link={link}></NewsSendDoc>
-              <div className="flex gap-2 w-full mt-6">
-                <button
-                  onClick={handleFollowUsClick}
-                  className="w-full py-2 font-semibold text-white bg-slate-900 rounded flex items-center justify-center gap-2 hover:bg-white/10 transition-colors"
-                >
-                  <FaTiktok className="text-white hover:text-teal-500 transition-colors"/>
-                  Follow Us
-                </button>
-                <button
-                  onClick={handleClose}
-                  className="w-full py-2 font-semibold text-teal-600 bg-white rounded hover:opacity-90 transition-opacity"
-                >
-                  Keep Browsing
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-};
 
 
 export default ResponsiveCards;
