@@ -3,9 +3,11 @@ import React, { useEffect,useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { AnimatePresence, motion } from "framer-motion";
-import { FiAlertCircle } from "react-icons/fi";
+import { FiAlertCircle,FiX } from "react-icons/fi";
 import { FaTiktok } from 'react-icons/fa'; // Assuming FaTiktok is the TikTok icon
 import News from './newsletter2.js';
+
+
 
 
 const ResponsiveCards = () => {
@@ -15,46 +17,20 @@ const ResponsiveCards = () => {
   }, []);
 
   const [isOpen, setIsOpen] = useState(false);
-  
+  const [isOpen2, setIsOpen2] = useState(false);
+
   const [cardsData, setCardsData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedCardId, setSelectedCardId] = useState(null);
+  const [notification, setNotification] = useState(null);
 
-  // Example data, you can replace downloadUrl with actual URLs to the files you want to download
-  const cardsData2 = [
-    {
-        status: "available",
-        name: "Goldman Sachs",
-        image: "https://res.cloudinary.com/dl2adjye7/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1711968499/Goldman_Sachs.svg_wbtwh9.png",
-        description: "A leading global investment banking, securities, and investment management firm, known for its financial expertise and commitment to client success.",
-        downloadUrl: "https://res.cloudinary.com/dl2adjye7/raw/upload/v1712488977/Goldman-Sachs_furnlc.docx"
-    },
-    {status: "available", name: "BlackRock", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712481839/Untitled_design_24_te5qrr.png", description: "The world's largest asset manager, providing investment, advisory, and risk management solutions to institutional and retail clients globally.", downloadUrl: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712658790/blackrock_re5mnt.png" },
-    {status: "available", name: "Morgan Stanley", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313256/Untitled_design_19_lhg4xn.png", description: "A global financial services firm offering a wide range of investment banking, securities, wealth management, and investment management services.", downloadUrl: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712739859/CV_Morgan_Stanley_1_jmlmvd.pdf" },
-    {
-      "status": "available",
-      "name": "McKinsey",
-      "image": "https://res.cloudinary.com/dl2adjye7/image/upload/v1712569143/Untitled_design_27_vdfo9b.png",
-      "description": "A global management consulting firm that advises on strategic, operational, and organizational matters, serving a wide range of industries and public sector entities.",
-      "downloadUrl": "https://res.cloudinary.com/dl2adjye7/image/upload/v1712827606/McKinsey_1_mmulao.pdf"
-  },
-    {status: "available", name: "Amazon", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313049/Untitled_design_17_ptzwq9.png", description: "A global e-commerce and cloud computing giant, renowned for its technological innovation, extensive product offerings, and customer-focused services.", downloadUrl: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712914526/amazon_1_dbmyv8.pdf" },
-    {status: "available", name: "Qube", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313160/Untitled_design_18_ozqsgm.png", description: "An innovative technology company specializing in digital transformation and business intelligence solutions, driving efficiency and growth for clients.", downloadUrl: "https://res.cloudinary.com/dl2adjye7/image/upload/v1713175248/qube_j0cpjf.pdf" },
-   
-    {status: "available", name: "Barclays", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313333/Untitled_design_20_eeralu.png", description: "A British multinational bank and financial services company, offering products and services across personal, corporate, and investment banking.", downloadUrl: "https://res.cloudinary.com/dl2adjye7/image/upload/v1713278705/barclays_2_dv09jt.pdf" },
-    {status: "1 day", name: "Deloitte", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313412/Untitled_design_21_dr42ev.png", description: "One of the largest professional services networks in the world, providing audit, consulting, financial advisory, risk advisory, tax, and related services.", downloadUrl: "<Deloitte_Download_URL>" },
-    {status: "2 days", name: "Natwest", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313705/Untitled_design_23_vkcffq.png", description: "A major retail and commercial bank in the United Kingdom, known for its customer service, banking operations, and financial solutions.", downloadUrl: "<Natwest_Download_URL>" },
-    {status: "3 days", name: "Wise", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712313625/Untitled_design_22_yn8tws.png", description: "A financial technology company offering innovative money transfer services, known for its transparent fees and efficient cross-border payments.", downloadUrl: "<Natwest_Download_URL>" },
-    
-    {status: "4 days", name: "Bank of America", image: "https://res.cloudinary.com/dl2adjye7/image/upload/v1712481990/Untitled_design_25_hgkfax.png", description: " A leading American multinational investment bank and financial services holding company, serving individual consumers.", downloadUrl: "<Natwest_Download_URL>" },
-    
-  {
-      "status": "5 days",
-      "name": "BCG",
-      "image": "https://res.cloudinary.com/dl2adjye7/image/upload/v1712569251/bcg_fk645r.png",
-      "description": "A worldwide management consulting firm providing advisory services in strategy, operations, organization, and digital transformation for various sectors.",
-      "downloadUrl": "<Natwest_Download_URL>"
-  }
-];
+  const showSuccessNotification = (message) => {
+    setNotification({ id: new Date().getTime(), text: message });
+  };
+
+
+
+
 const fetchCards = async () => {
   try {
     const response = await fetch('https://onecvadayback-a45e67a4a10c.herokuapp.com/api/cards/');
@@ -71,6 +47,13 @@ const fetchCards = async () => {
 // Render a loading message or error message depending on the fetch status
 if (isLoading) return <p>Loading...</p>;
 
+const handleCardClick = (card) => {
+  if (card.status === "available") {
+    setIsOpen2(true);
+     // Show the modal instead of downloading
+    setSelectedCardId(card.id); // Store the card ID
+  }
+};
 
 // In ResponsiveCards component
 // In ResponsiveCards component
@@ -83,34 +66,52 @@ return (
           name={card.name}
           image={card.image}
           description={card.description}
-          downloadUrl={card.downloadUrl} // Ensure downloadUrl is passed to the component
+          onClick={() => handleCardClick(card)}
+        
+         
+           // Ensure downloadUrl is passed to the component
           status={card.status}
           onUnavailableClick={() => setIsOpen(true)}
+          onavailableClick={() => setIsOpen2(true)}
         />
       ))}
     </div>
     <SpringModal isOpen={isOpen} setIsOpen={setIsOpen} />
+    <AuthenticationModal isOpen={isOpen2} setIsOpen={setIsOpen2} cardId={selectedCardId} showSuccessNotification={showSuccessNotification} />
+    <StackedNotifications showNotification={!!notification} notificationContent={notification} />
+
   </div>
 );
       }
 
-const ShimmerBorderCard = ({ name, image, description, downloadUrl, status, onUnavailableClick }) => {
+const ShimmerBorderCard = ({ name, image, description, status, onUnavailableClick,onavailableClick,onClick  }) => {
   const isAvailable = status === "available";
   const badgeClass = isAvailable ? "bg-green-100 text-green-700 fill-green-500" : "bg-orange-100 text-orange-700 fill-orange-500";
   const badgeText = isAvailable ? "Available" : `${status} left`;
+  
 
   // Function to handle the click event
   const handleCardClick = (event) => {
     if (!isAvailable) {
       event.preventDefault(); // Prevent download if not available
-      onUnavailableClick(); // Open the modal
+      onUnavailableClick();
+      
+    }else{
+      event.preventDefault(); 
+      onavailableClick()
+      
     }
   };
 
   return (
     <a
-      href={isAvailable ? downloadUrl : '#!'}
-      onClick={handleCardClick}
+      href={''}
+      onClick={(event) => {
+        event.preventDefault(); // Optional: prevents default action if it's a link or a form
+        handleCardClick(event);
+        onClick(); // Another function you want to call
+      }}
+      
       target="_blank"
       rel="noopener noreferrer"
       className={`group relative w-full max-w-sm overflow-hidden rounded-lg bg-slate-800 p-0.5 transition-all duration-500 `}
@@ -155,7 +156,9 @@ const ShimmerBorderCard = ({ name, image, description, downloadUrl, status, onUn
 
 const SpringModal = ({ isOpen, setIsOpen }) => {
   const handleClose = () => {
+    
     setIsOpen(false);
+   
   };
 
   const handleFollowUsClick = () => {
@@ -212,6 +215,128 @@ const SpringModal = ({ isOpen, setIsOpen }) => {
     </AnimatePresence>
   );
 };
+
+
+const Notification = ({ text, removeNotif }) => {
+  return (
+    <motion.div
+      initial={{ y: 15, scale: 0.9, opacity: 0 }}
+      animate={{ y: 0, scale: 1, opacity: 1 }}
+      exit={{ y: -25, scale: 0.9, opacity: 0 }}
+      transition={{ type: "spring", stiffness: 260, damping: 20 }}
+      className="p-4 w-80 flex items-start rounded-lg gap-2 text-sm font-medium shadow-lg text-white bg-violet-600 fixed z-50 bottom-4 right-4 text-left"
+    >
+      <FiAlertCircle className="text-xl mr-2" />
+      <span>{text}</span>
+      <button onClick={removeNotif} className="ml-auto">
+        <FiX />
+      </button>
+    </motion.div>
+  );
+};
+
+const StackedNotifications = ({ showNotification, notificationContent }) => {
+  const [notification, setNotification] = useState(null);
+
+  useEffect(() => {
+    if (showNotification && notificationContent) {
+      setNotification(notificationContent);
+    }
+  }, [showNotification, notificationContent]);
+
+  const removeNotif = () => {
+    setNotification(null);
+  };
+
+  return (
+    <div className="bg-slate-900 min-h-[200px] flex items-center justify-center">
+      <AnimatePresence>
+        {notification && (
+          <Notification
+            removeNotif={removeNotif}
+            key={notification.id}
+            {...notification}
+          />
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+
+
+const AuthenticationModal = ({ isOpen, setIsOpen, cardId,showSuccessNotification  }) => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();  // Prevent the form from submitting normally
+    const email = event.target.email.value;  // Get the email from the form
+
+    // Data to be sent to the server
+    const data = JSON.stringify({
+      card_id: cardId,
+      email: email
+    });
+
+    // API call
+    try {
+      const response = await fetch('https://onecvadayback-a45e67a4a10c.herokuapp.com/api/send/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: data
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      } else {
+        const result = await response.json();
+        console.log('Success:', result);
+        setIsOpen(false);  // Close the modal if the request is successful
+        showSuccessNotification(`Email successfully sent to ${email}!`);  // Show success notification
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <>
+      {isOpen && (
+        <div className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-screen">
+          <div className="relative p-4 w-full max-w-md">
+            <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+              <div className="flex items-center justify-between p-5 border-b dark:border-gray-600">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  We will send you the CV via email
+                </h3>
+                <button onClick={toggleModal} type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 dark:hover:bg-gray-600 dark:hover:text-white">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div className="p-5">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">Your email</label>
+                    <input type="email" name="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
+                  </div>
+                  <button type="submit" className="w-full text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+
+
+
 
 
 
